@@ -1,4 +1,4 @@
-# FinAPI — API Flask pour cours boursiers
+# FinAPI — API Flask + ETL + SQLite
 
 ## Installation
 
@@ -6,18 +6,21 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 
-## Lancement
+## Lancement du serveur
 
 python -m finapi.app
 
-## Endpoints
+## Ingestion des données
 
-### Health check
+python -m scripts.run_etl AAPL MSFT GOOGL
+
+## Endpoints Lab 1
+
 curl http://localhost:5000/health
-
-### Prix d'une action
 curl http://localhost:5000/price/AAPL
-
-### Historique des prix
 curl http://localhost:5000/history/AAPL?days=5
-curl http://localhost:5000/history/MSFT?days=30
+
+## Endpoints Lab 2
+
+curl http://localhost:5000/db/prices/AAPL
+curl http://localhost:5000/db/news/MSFT
