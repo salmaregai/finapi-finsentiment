@@ -1,3 +1,5 @@
+![CI](https://github.com/salmaregai/finapi-finsentiment/actions/workflows/ci.yml/badge.svg)
+
 # FinAPI — API Flask + ETL + SQLite
 
 ## Installation
