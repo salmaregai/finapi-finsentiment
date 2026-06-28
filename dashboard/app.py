@@ -1,6 +1,9 @@
 """Dashboard interactif d'analyse de sentiment financier."""
 
 from datetime import datetime
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent))
 import streamlit as st
 import api_client as api
 from charts import price_line_chart, sentiment_pie_chart, SENT_COLORS
