@@ -30,4 +30,6 @@ if os.getenv("BOOTSTRAP", "1") == "1":
     bootstrap_data()
 
 # Importer et exposer le dashboard Streamlit
+import sys
+sys.path.insert(0, str(Path(__file__).parent / "dashboard"))
 exec(open(Path(__file__).parent / "dashboard" / "app.py").read())
