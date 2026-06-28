@@ -15,6 +15,8 @@ engine = create_engine(
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 Base = declarative_base()
 
+
 def init_db() -> None:
     from finapi import models  # noqa
-    Base.metadata.create_all(bind=engine) 
+
+    Base.metadata.create_all(bind=engine)

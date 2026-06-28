@@ -34,3 +34,33 @@ curl http://localhost:5000/db/sentiment-summary/AAPL
 ## Enrichissement des sentiments
 
 python -m scripts.enrich_sentiment
+
+## Lancer le dashboard
+
+### Prérequis
+Assure-toi que l'environnement virtuel est activé et les dépendances installées :
+```bash
+pip install streamlit plotly requests
+```
+
+### Lancement
+
+**Terminal 1 — API Flask :**
+```bash
+python -m finapi.app
+```
+
+**Terminal 2 — Dashboard Streamlit :**
+```bash
+streamlit run dashboard/app.py
+```
+
+Ouvre ensuite http://localhost:8501 dans ton navigateur.
+
+### Aperçu
+
+![Dashboard FinSentiment](docs/screenshots/dashboard1.png)
+![Dashboard FinSentiment](docs/screenshots/dashboard2.png)
+![Dashboard - Dernières news](docs/screenshots/dashboard3.png)
+![Dashboard - Dernières news](docs/screenshots/dashboard4.png)
+

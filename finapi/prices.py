@@ -49,4 +49,3 @@ def get_history(ticker: str, days: int) -> list[PricePoint]:
         PricePoint(date=ts.date(), close=round(float(close), 2))
         for ts, close in history["Close"].items()
     ]
-    

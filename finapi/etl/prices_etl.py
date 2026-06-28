@@ -7,6 +7,7 @@ from finapi.models import PriceRecord
 
 log = logging.getLogger(__name__)
 
+
 def ingest_prices(ticker: str, period: str = "1mo") -> int:
     log.info("ETL prices: fetching %s (period=%s)", ticker, period)
     history = yf.Ticker(ticker).history(period=period, auto_adjust=False)
@@ -38,4 +39,3 @@ def ingest_prices(ticker: str, period: str = "1mo") -> int:
 
     log.info("ETL prices: %d lignes inserees pour %s", inserted, ticker)
     return inserted
-    

@@ -7,6 +7,7 @@ from finapi.models import NewsItem
 
 log = logging.getLogger(__name__)
 
+
 def ingest_news(ticker: str) -> int:
     log.info("ETL news: fetching %s", ticker)
     news_list = yf.Ticker(ticker).news or []
@@ -20,14 +21,16 @@ def ingest_news(ticker: str) -> int:
             published_at = datetime.fromisoformat(published.replace("Z", "+00:00"))
         except ValueError:
             continue
-        rows.append({
-            "ticker": ticker.upper(),
-            "published_at": published_at,
-            "title": content.get("title", "")[:500],
-            "publisher": (content.get("provider") or {}).get("displayName", ""),
-            "url": (content.get("clickThroughUrl") or {}).get("url"),
-            "summary": (content.get("summary") or "")[:2000],
-        })
+        rows.append(
+            {
+                "ticker": ticker.upper(),
+                "published_at": published_at,
+                "title": content.get("title", "")[:500],
+                "publisher": (content.get("provider") or {}).get("displayName", ""),
+                "url": (content.get("clickThroughUrl") or {}).get("url"),
+                "summary": (content.get("summary") or "")[:2000],
+            }
+        )
 
     rows = [r for r in rows if r["url"]]
     if not rows:
@@ -42,5 +45,4 @@ def ingest_news(ticker: str) -> int:
         inserted = result.rowcount or 0
 
     log.info("ETL news: %d articles inseres pour %s", inserted, ticker)
-    return inserted 
-    
+    return inserted
